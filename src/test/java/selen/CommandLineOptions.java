@@ -4,39 +4,33 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-
-public class LitecartTest {
+public class CommandLineOptions {
     private WebDriver driver;
-
+    private WebDriverWait wait;
 
     @Before
     public void start() {
-        driver = new ChromeDriver();
-        //   driver = new InternetExplorerDriver();
-        //  driver= new FirefoxDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("start-fullscreen");
+        //options.setBinary("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
+        driver = new ChromeDriver(options);
+        wait = new WebDriverWait(driver, 10);
     }
 
     @Test
-    public void authorizationTest() {
+    public void testCapabilities() {
         driver.get("http://localhost/litecart/admin");
         driver.manage().window().maximize();
         driver.findElement(By.xpath("//input[@name='username']")).sendKeys("admin");
         driver.findElement(By.xpath("//input[@name='password']")).sendKeys("admin");
         driver.findElement(By.xpath("//button[@name='login']")).click();
-        sleep(5);
-    }
-
-    public void sleep(int sec) {
-        try {
-            Thread.sleep(sec * 1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     @After
