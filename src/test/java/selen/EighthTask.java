@@ -31,12 +31,10 @@ public class EighthTask {
             List<WebElement> productListInBlock = DriverFactory.getDriver().findElements(By.xpath(productXpath.concat("[" + positionI + "]//li")));
             for (int j = 0; j < productListInBlock.size(); j++) {
                 int positionJ = j + 1;
-                WebElement product = DriverFactory
-                        .getDriver()
-                        .findElement(By.xpath(productXpath
-                                .concat("[" + positionI + "]//li[" + positionJ + "]")
-                                .concat("//div[contains(@class,'sticker')]")));
-                Assertions.assertTrue(product.isDisplayed());
+                String stickerXpath = productXpath.concat("[" + positionI + "]//li[" + positionJ + "]").concat("//div[contains(@class,'sticker')]");
+                List<WebElement> listProductSticker = DriverFactory.getDriver().findElements(By.xpath(stickerXpath));
+                Assertions.assertTrue(listProductSticker.get(0).isDisplayed());
+                Assertions.assertEquals(1, listProductSticker.size());
             }
         }
     }
@@ -46,3 +44,9 @@ public class EighthTask {
         terDawn();
     }
 }
+
+//    String stickerXpath = productXpath
+//            .concat("[" + positionI + "]//li[" + positionJ + "]")
+//            .concat("//div[contains(@class,'sticker')]");
+//    WebElement product = DriverFactory.getDriver().findElement(By.xpath(stickerXpath));
+//    List<WebElement> listSticker = DriverFactory.getDriver().findElements(By.xpath(productXpath.concat(stickerXpath)));
