@@ -44,9 +44,3 @@ public class EighthTask {
         terDawn();
     }
 }
-
-//    String stickerXpath = productXpath
-//            .concat("[" + positionI + "]//li[" + positionJ + "]")
-//            .concat("//div[contains(@class,'sticker')]");
-//    WebElement product = DriverFactory.getDriver().findElement(By.xpath(stickerXpath));
-//    List<WebElement> listSticker = DriverFactory.getDriver().findElements(By.xpath(productXpath.concat(stickerXpath)));
