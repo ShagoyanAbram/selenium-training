@@ -18,6 +18,7 @@ import static selen.driver.DriverFactory.createDriver;
 import static selen.driver.DriverFactory.terDawn;
 
 public class NinthTask {
+    TestFunction testFunction = new TestFunction();
 
     @Before
     public void start() {
@@ -29,8 +30,19 @@ public class NinthTask {
         DriverFactory.getDriver().findElement(By.xpath("//input[@name='username']")).sendKeys("admin");
         DriverFactory.getDriver().findElement(By.xpath("//input[@name='password']")).sendKeys("admin");
         DriverFactory.getDriver().findElement(By.xpath("//button[@name='login']")).click();
-        checkCountriesSort("//table[@class='dataTable']//tr[@class='row']//td[5]/a","text");
+        testFunction.sleep(1);
+        checkCountriesSort("//table[@class='dataTable']//tr[@class='row']//td[5]/a", "text");
         checkZoneSort("//table[@class='dataTable']//tr[@class='row']//td[6]", "//table[@class='dataTable']//tr//td[3]//input[@type='hidden']");
+    }
+
+    @Test
+    public void testSortZoneToCountry() {
+        DriverFactory.getDriver().get("http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones");
+        DriverFactory.getDriver().findElement(By.xpath("//input[@name='username']")).sendKeys("admin");
+        DriverFactory.getDriver().findElement(By.xpath("//input[@name='password']")).sendKeys("admin");
+        DriverFactory.getDriver().findElement(By.xpath("//button[@name='login']")).click();
+        testFunction.sleep(1);
+        checkGeoZoneSort("//tr[@class='row']/td[3]/a", "//select[contains(@name,'zone_code')]//option[@selected='selected']");
     }
 
     public void checkCountriesSort(String xpathListCounty, String attribute) {
@@ -57,7 +69,24 @@ public class NinthTask {
         for (String s : listID) {
             WebElement country = DriverFactory.getDriver().findElement(By.xpath("(//table[@class='dataTable']//tr[@class='row']//td[5]//a)[" + s + "]"));
             country.click();
-            checkCountriesSort(xpathListZone,"value");
+            checkCountriesSort(xpathListZone, "value");
+            DriverFactory.getDriver().navigate().back();
+        }
+    }
+
+    public void checkGeoZoneSort(String countryNameXpath, String zoneNameXpath) {
+        List<WebElement> listCountryName = DriverFactory.getDriver().findElements(By.xpath(countryNameXpath));
+        List<String> listZoneName = new ArrayList<>();
+        for (int i = 0; i < listCountryName.size(); i++) {
+            listCountryName = DriverFactory.getDriver().findElements(By.xpath(countryNameXpath));
+            listCountryName.get(i).click();
+            List<WebElement> listElemZoneName = DriverFactory.getDriver().findElements(By.xpath(zoneNameXpath));
+            for (int j = 0; j < listElemZoneName.size(); j++) {
+                listElemZoneName = DriverFactory.getDriver().findElements(By.xpath(zoneNameXpath));
+                listZoneName.add(listElemZoneName.get(i).getText());
+            }
+            Assertions.assertEquals(listZoneName.stream().sorted().collect(Collectors.toList()), listZoneName);
+            listZoneName.clear();
             DriverFactory.getDriver().navigate().back();
         }
     }
