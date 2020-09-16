@@ -22,7 +22,7 @@ public class NinthTask {
 
     @Before
     public void start() {
-        createDriver("http://localhost/litecart/admin/?app=countries&doc=countries");
+        createDriver("http://localhost/litecart/admin/?app=countries&doc=countries","Chrome" /*"Firefox" "InternetExplorer"*/);
     }
 
     @Test

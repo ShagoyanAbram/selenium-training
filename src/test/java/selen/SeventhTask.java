@@ -18,7 +18,7 @@ public class SeventhTask {
 
     @Before
     public void start() {
-        createDriver("http://localhost/litecart/admin");
+        createDriver("http://localhost/litecart/admin", "Chrome" /*"Firefox" "InternetExplorer"*/);
     }
 
     @Test

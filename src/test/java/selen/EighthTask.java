@@ -16,7 +16,7 @@ import static selen.driver.DriverFactory.terDawn;
 public class EighthTask {
     @Before
     public void start() {
-        createDriver("http://localhost/litecart/");
+        createDriver("http://localhost/litecart/", "Chrome" /*"Firefox" "InternetExplorer"*/);
     }
 
     @Test
