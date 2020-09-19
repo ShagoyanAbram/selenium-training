@@ -12,7 +12,6 @@ import selen.function.TestFunction;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-;
 
 import static selen.driver.DriverFactory.createDriver;
 import static selen.driver.DriverFactory.terDawn;
