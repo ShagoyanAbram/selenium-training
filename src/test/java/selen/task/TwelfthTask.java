@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import selen.driver.DriverFactory;
 
 import java.io.File;
-import java.io.IOException;
 
 import static selen.driver.DriverFactory.createDriver;
 import static selen.driver.DriverFactory.terDawn;
@@ -19,9 +18,6 @@ public class TwelfthTask {
     private final String IMAGE_PATH = new File("img/blackDuck.jpg").getAbsolutePath();
     private String shortDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sollicitudin ante massa, eget ornare libero porta congue.";
     private String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sollicitudin ante massa, eget ornare libero porta congue. Cras scelerisque dui non consequat sollicitudin. Sed pretium tortor ac auctor molestie. Nulla facilisi. Maecenas pulvinar nibh vitae lectus vehicula semper. Donec et aliquet velit. Curabitur non ullamcorper mauris. In hac habitasse platea dictumst. Phasellus ut pretium justo, sit amet bibendum urna. Maecenas sit amet arcu pulvinar, facilisis quam at, viverra nisi. Morbi sit amet adipiscing ante. Integer imperdiet volutpat ante, sed venenatis urna volutpat a. Proin justo massa, convallis vitae consectetur sit amet, facilisis id libero.";
-
-    public TwelfthTask() throws IOException {
-    }
 
     @Before
     public void start() {
