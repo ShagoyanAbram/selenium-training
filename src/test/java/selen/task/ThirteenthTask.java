@@ -3,11 +3,9 @@ package selen.task;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import selen.driver.DriverFactory;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -52,10 +50,10 @@ public class ThirteenthTask {
 
     public boolean isElementNotPresent(By locator) {
         try {
-            DriverFactory.getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-            return DriverFactory.getDriver().findElements(locator).size() == 1;
+            getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+            return getDriver().findElements(locator).size() == 1;
         } finally {
-            DriverFactory.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         }
     }
 
