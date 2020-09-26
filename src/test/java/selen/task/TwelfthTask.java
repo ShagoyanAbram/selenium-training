@@ -67,6 +67,7 @@ public class TwelfthTask {
         getDriver().findElement(By.xpath("//input[@name='username']")).sendKeys("admin");
         getDriver().findElement(By.xpath("//input[@name='password']")).sendKeys("admin");
         getDriver().findElement(By.xpath("//button[@name='login']")).click();
+        sleep(1);
     }
 
     @After
