@@ -25,7 +25,7 @@ public class TenthTask {
         List<String> listOne = new ArrayList<>(checkProductValues("//h3[text()='Campaigns']//parent::div//div[@class='name']",
                 "//h3[text() ='Campaigns']//parent::div//s[@class='regular-price']", "(//h3[text()='Campaigns']//parent::div)//strong"));
 
-        getDriver().findElement(By.xpath("//h3[text()='Campaigns']//parent::div//a[@class='link']")).click();
+        driver().findElement(By.xpath("//h3[text()='Campaigns']//parent::div//a[@class='link']")).click();
 
         List<String> listTwo = new ArrayList<>(checkProductValues("//h1[@itemprop='name']", "//s[@class='regular-price']",
                 "//*[@class='campaign-price']"));
@@ -49,13 +49,13 @@ public class TenthTask {
         List<String> listA = new ArrayList<>();
 
         //а) на главной странице и на странице товара совпадает текст названия товара
-        WebElement productName = getDriver().findElement(By.xpath(productNameXpath));
+        WebElement productName = driver().findElement(By.xpath(productNameXpath));
 
         //б) на главной странице и на странице товара совпадают цены обычная
-        WebElement regularPrice = getDriver().findElement(By.xpath(regularPriceXpath));
+        WebElement regularPrice = driver().findElement(By.xpath(regularPriceXpath));
 
         //б) на главной странице и на странице товара совпадают цены акционная
-        WebElement strongPrice = getDriver().findElement(By.xpath(strongPriceXpath));
+        WebElement strongPrice = driver().findElement(By.xpath(strongPriceXpath));
 
         listA.add(productName.getText());
         listA.add(regularPrice.getText());

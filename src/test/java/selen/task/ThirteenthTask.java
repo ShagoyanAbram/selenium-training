@@ -14,6 +14,10 @@ import static selen.driver.DriverFactory.*;
 import static selen.function.TestFunction.sleep;
 
 public class ThirteenthTask {
+//    @FindBy(xpath = "//div[@id='box-most-popular']//li[contains(@class,'product')][1]")
+//    private WebElement product;
+
+
 
     @Before
     public void start() {
@@ -22,38 +26,50 @@ public class ThirteenthTask {
 
     @Test
     public void myThirteenthTest() {
-        for (int i = 1; i < 4; i++) {
-            getDriver().findElement(By.xpath("//div[@id='box-most-popular']//li[contains(@class,'product')][1]")).click();
-            if (isElementNotPresent(By.xpath("//select[@name='options[Size]']"))) {
-                getDriver().findElement(By.xpath("//select[@name='options[Size]']")).click();
-                getDriver().findElement(By.xpath("//*[text()='Small']")).click();
-            }
-            getDriver().findElement(By.xpath("//button[@name='add_cart_product']")).click();
-            getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='quantity' and text()='" + i + "']")));
-            getDriver().findElement(By.xpath("//div[@id='logotype-wrapper']/a")).click();
-        }
+        addProductToCart(3);
         sleep(1);
-        getDriver().findElement(By.xpath("//a[contains(text(),'Checkout')]")).click();
+        openCart();
         sleep(1);
-        List<WebElement> countProduct = getDriver().findElements(By.xpath("//ul[@class='shortcuts']/li"));
-        countProduct.get(0).click();
-        int count = countProduct.size();
-        for (int i = count; i > 0; i--) {
-            List<WebElement> elements = getDriver().findElements(By.xpath("//table[@class='dataTable rounded-corners']//tr"));
-            getDriver().findElement(By.xpath("//button[@name='remove_cart_item']")).click();
-            getWait().until(ExpectedConditions.stalenessOf(elements.get(1)));
-            elements = getDriver().findElements(By.xpath("//table[@class='dataTable rounded-corners']//tr"));
+        emptyCart();
 
+    }
+
+    public void addProductToCart(int productCount) {
+        for (int i = 1; i <= productCount; i++) {
+            driver().findElement(By.xpath("//div[@id='box-most-popular']//li[contains(@class,'product')][1]")).click();
+            if (isElementNotPresent(By.xpath("//select[@name='options[Size]']"))) {
+                driver().findElement(By.xpath("//select[@name='options[Size]']")).click();
+                driver().findElement(By.xpath("//*[text()='Small']")).click();
+            }
+            driver().findElement(By.xpath("//button[@name='add_cart_product']")).click();
+            getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='quantity' and text()='" + i + "']")));
+            driver().findElement(By.xpath("//div[@id='logotype-wrapper']/a")).click();
         }
 
     }
 
+    public void emptyCart() {
+        List<WebElement> countProduct = driver().findElements(By.xpath("//ul[@class='shortcuts']/li"));
+        countProduct.get(0).click();
+        int count = countProduct.size();
+        for (int i = count; i > 0; i--) {
+            List<WebElement> elements = driver().findElements(By.xpath("//table[@class='dataTable rounded-corners']//tr"));
+            driver().findElement(By.xpath("//button[@name='remove_cart_item']")).click();
+            getWait().until(ExpectedConditions.stalenessOf(elements.get(1)));
+            elements = driver().findElements(By.xpath("//table[@class='dataTable rounded-corners']//tr"));
+        }
+    }
+
+    public void openCart() {
+        driver().findElement(By.xpath("//a[contains(text(),'Checkout')]")).click();
+    }
+
     public boolean isElementNotPresent(By locator) {
         try {
-            getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-            return getDriver().findElements(locator).size() == 1;
+            driver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+            return driver().findElements(locator).size() == 1;
         } finally {
-            getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            driver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         }
     }
 

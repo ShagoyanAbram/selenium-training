@@ -10,7 +10,7 @@ import org.openqa.selenium.logging.LogEntry;
 import java.util.List;
 
 import static selen.driver.DriverFactory.*;
-import static selen.driver.DriverFactory.getDriver;
+import static selen.driver.DriverFactory.driver;
 
 public class SeventeenthTask {
     TwelfthTask twelfthTask = new TwelfthTask();
@@ -23,19 +23,19 @@ public class SeventeenthTask {
     @Test
     public void mySeventeenthTest() {
         twelfthTask.loginAdmin();
-        getDriver().findElement(By.xpath("//span[text()='Catalog']")).click();
-        getDriver().findElement(By.xpath("//a[text()='Rubber Ducks']")).click();
+        driver().findElement(By.xpath("//span[text()='Catalog']")).click();
+        driver().findElement(By.xpath("//a[text()='Rubber Ducks']")).click();
         checkProductPage();
-        List<LogEntry> browserLogs = getDriver().manage().logs().get("browser").getAll();
+        List<LogEntry> browserLogs = driver().manage().logs().get("browser").getAll();
         System.out.println(browserLogs.size());
     }
 
     public void checkProductPage() {
-        List<WebElement> elements = getDriver().findElements(By.xpath("//tr/td/a[contains(text(),'Duck')]"));
+        List<WebElement> elements = driver().findElements(By.xpath("//tr/td/a[contains(text(),'Duck')]"));
         for (int i = 0; i < elements.size(); i++) {
-            elements = getDriver().findElements(By.xpath("//tr/td/a[contains(text(),'Duck')]"));
+            elements = driver().findElements(By.xpath("//tr/td/a[contains(text(),'Duck')]"));
             elements.get(i).click();
-            getDriver().navigate().back();
+            driver().navigate().back();
         }
     }
 

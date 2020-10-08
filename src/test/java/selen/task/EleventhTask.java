@@ -24,39 +24,39 @@ public class EleventhTask {
     public void myEleventhTest() {
         newUserRegistration("Ivan", "Ivanov", "1255 22ND ST. NW", "12345",
                 "Washington", "United States", "2345678900", PASSWORD);
-        getDriver().findElement(By.xpath("//div[@class='content']//a[text()='Logout']")).click();
+        driver().findElement(By.xpath("//div[@class='content']//a[text()='Logout']")).click();
         login(email, PASSWORD);
-        getDriver().findElement(By.xpath("//div[@class='content']//a[text()='Logout']")).click();
+        driver().findElement(By.xpath("//div[@class='content']//a[text()='Logout']")).click();
     }
 
     public void newUserRegistration(String firstName, String lastName, String address, String postcode, String city, String country, String phone, String password) {
         email = randomMailGeneration(7, "gmail.com");
         String script = "";
-        getDriver().findElement(By.xpath("//a[text()='New customers click here']")).click();
+        driver().findElement(By.xpath("//a[text()='New customers click here']")).click();
         sleep(1);
-        getDriver().findElement(By.xpath("//input[@name='firstname']")).sendKeys(firstName);
-        getDriver().findElement(By.xpath("//input[@name='lastname']")).sendKeys(lastName);
-        getDriver().findElement(By.xpath("//input[@name='address1']")).sendKeys(address);
-        getDriver().findElement(By.xpath("//input[@name='postcode']")).sendKeys(postcode);
-        getDriver().findElement(By.xpath("//span[@class='select2-selection__rendered']")).click();
-        getDriver().findElement(By.xpath("//input[@type='search']")).sendKeys(country);
-        getDriver().findElement(By.xpath("//input[@type='search']")).sendKeys(Keys.ENTER);
-        getDriver().findElement(By.xpath("//input[@name='city']")).sendKeys(city);
-        getDriver().findElement(By.xpath("//input[@name='phone']")).sendKeys(phone);
-        getDriver().findElement(By.xpath("//input[@name='password']")).sendKeys(password);
-        getDriver().findElement(By.xpath("//input[@name='confirmed_password']")).sendKeys(password);
-        getDriver().findElement(By.xpath("//input[@name='email']")).sendKeys(email);
-        getDriver().findElement(By.xpath("//button[@name='create_account']")).click();
+        driver().findElement(By.xpath("//input[@name='firstname']")).sendKeys(firstName);
+        driver().findElement(By.xpath("//input[@name='lastname']")).sendKeys(lastName);
+        driver().findElement(By.xpath("//input[@name='address1']")).sendKeys(address);
+        driver().findElement(By.xpath("//input[@name='postcode']")).sendKeys(postcode);
+        driver().findElement(By.xpath("//span[@class='select2-selection__rendered']")).click();
+        driver().findElement(By.xpath("//input[@type='search']")).sendKeys(country);
+        driver().findElement(By.xpath("//input[@type='search']")).sendKeys(Keys.ENTER);
+        driver().findElement(By.xpath("//input[@name='city']")).sendKeys(city);
+        driver().findElement(By.xpath("//input[@name='phone']")).sendKeys(phone);
+        driver().findElement(By.xpath("//input[@name='password']")).sendKeys(password);
+        driver().findElement(By.xpath("//input[@name='confirmed_password']")).sendKeys(password);
+        driver().findElement(By.xpath("//input[@name='email']")).sendKeys(email);
+        driver().findElement(By.xpath("//button[@name='create_account']")).click();
         //Дублирую код так, как не смог указать зону
-        getDriver().findElement(By.xpath("//input[@name='password']")).sendKeys(password);
-        getDriver().findElement(By.xpath("//input[@name='confirmed_password']")).sendKeys(password);
-        getDriver().findElement(By.xpath("//button[@name='create_account']")).click();
+        driver().findElement(By.xpath("//input[@name='password']")).sendKeys(password);
+        driver().findElement(By.xpath("//input[@name='confirmed_password']")).sendKeys(password);
+        driver().findElement(By.xpath("//button[@name='create_account']")).click();
     }
 
     public void login(String email, String password) {
-        getDriver().findElement(By.xpath("//input[@name='email']")).sendKeys(email);
-        getDriver().findElement(By.xpath("//input[@name='password']")).sendKeys(password);
-        getDriver().findElement(By.xpath("//button[@name='login']")).click();
+        driver().findElement(By.xpath("//input[@name='email']")).sendKeys(email);
+        driver().findElement(By.xpath("//input[@name='password']")).sendKeys(password);
+        driver().findElement(By.xpath("//button[@name='login']")).click();
     }
 
     public String randomMailGeneration(int length, String mailType) {

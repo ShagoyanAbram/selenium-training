@@ -25,23 +25,23 @@ public class FourteenthTask {
     @Test
     public void myFourteenthTest() {
         twelfthTask.loginAdmin();
-        getDriver().findElement(By.xpath("//span[text()='Countries']")).click();
-        getDriver().findElement(By.xpath("//a[contains(text(),'Add New Country')]")).click();
+        driver().findElement(By.xpath("//span[text()='Countries']")).click();
+        driver().findElement(By.xpath("//a[contains(text(),'Add New Country')]")).click();
         checkActiveLink();
         sleep(5);
 
     }
 
     public void checkActiveLink() {
-        List<WebElement> elements = getDriver().findElements(By.xpath("//tr//i[@class='fa fa-external-link']"));
-        String originalWindow = getDriver().getWindowHandle();
-        Set<String> existingWindows = getDriver().getWindowHandles();
+        List<WebElement> elements = driver().findElements(By.xpath("//tr//i[@class='fa fa-external-link']"));
+        String originalWindow = driver().getWindowHandle();
+        Set<String> existingWindows = driver().getWindowHandles();
         for (int i = 0; i < elements.size(); i++) {
             elements.get(i).click();
             String newWindow = getWait().until(anyWindowOtherThan(existingWindows));
-            getDriver().switchTo().window(newWindow);
-            getDriver().close();
-            getDriver().switchTo().window(originalWindow);
+            driver().switchTo().window(newWindow);
+            driver().close();
+            driver().switchTo().window(originalWindow);
         }
     }
 

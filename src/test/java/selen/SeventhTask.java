@@ -21,31 +21,31 @@ public class SeventhTask {
 
     @Test
     public void mySeventhTest() throws InterruptedException {
-        getDriver().findElement(By.xpath("//input[@name='username']")).sendKeys("admin");
-        getDriver().findElement(By.xpath("//input[@name='password']")).sendKeys("admin");
-        getDriver().findElement(By.xpath("//button[@name='login']")).click();
+        driver().findElement(By.xpath("//input[@name='username']")).sendKeys("admin");
+        driver().findElement(By.xpath("//input[@name='password']")).sendKeys("admin");
+        driver().findElement(By.xpath("//button[@name='login']")).click();
         sleep(5);
         clicker("//ul[@id='box-apps-menu']/li", "//ul[@id='box-apps-menu']/li/ul/li", "//h1");
     }
 
     public void clickElemMenu(String elemName) {
-        getDriver().findElement(By.xpath("//span[text()=\'" + elemName + "\']")).click();
+        driver().findElement(By.xpath("//span[text()=\'" + elemName + "\']")).click();
     }
 
     public void checkElement(String xpath) {
-        WebElement element = getDriver().findElement(By.xpath(xpath));
+        WebElement element = driver().findElement(By.xpath(xpath));
         Assertions.assertTrue(element.isDisplayed());
     }
 
     public void clicker(String xpathElemClickA, String xpathElemClickB, String xpathCheckElement) {
-        List<WebElement> elements = getDriver().findElements(By.xpath(xpathElemClickA));
+        List<WebElement> elements = driver().findElements(By.xpath(xpathElemClickA));
         for (int i = 0; i < elements.size(); i++) {
-            List<WebElement> element = getDriver().findElements(By.xpath(xpathElemClickA));
+            List<WebElement> element = driver().findElements(By.xpath(xpathElemClickA));
             element.get(i).click();
             checkElement(xpathCheckElement);
-            List<WebElement> nestedElements = getDriver().findElements(By.xpath(xpathElemClickB));
+            List<WebElement> nestedElements = driver().findElements(By.xpath(xpathElemClickB));
             for (int j = 0; j < nestedElements.size(); j++) {
-                List<WebElement> nestedElement = getDriver().findElements(By.xpath(xpathElemClickB));
+                List<WebElement> nestedElement = driver().findElements(By.xpath(xpathElemClickB));
                 nestedElement.get(j).click();
                 checkElement(xpathCheckElement);
             }
